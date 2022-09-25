@@ -39,7 +39,6 @@ const getNotes = () =>
       return response;
     })
     .then(notes => {
-      console.log(notes);
       renderNoteList(notes);
     })
 
@@ -51,14 +50,14 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note),
   })
-  .then(response => {
-    if(response.ok) {
-      return response.json()
-    }
-  })
-  .then(
-    getAndRenderNotes()
-  )
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+    })
+    .then(
+      getAndRenderNotes()
+    )
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -66,7 +65,12 @@ const deleteNote = (id) =>
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  })
+    .then(response => {
+      if (response.ok) {
+        return response
+      }
+    })
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
