@@ -38,9 +38,7 @@ const getNotes = () =>
       }
       return response;
     })
-    .then(notes => {
-      renderNoteList(notes);
-    })
+
 
 const saveNote = (note) =>
   fetch('/api/notes', {
@@ -68,7 +66,7 @@ const deleteNote = (id) =>
   })
     .then(response => {
       if (response.ok) {
-        return response
+        return response.json()
       }
     })
 

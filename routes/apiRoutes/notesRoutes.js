@@ -14,7 +14,6 @@ router.post('/notes', (req, res) => {
 
 router.delete('/notes/:id', (req, res) => {
     const target = notes.find(note => note.id === req.params.id)
-    console.log(notes.indexOf(target))
 
     deleteNote(target, notes)
     res.json(target)
